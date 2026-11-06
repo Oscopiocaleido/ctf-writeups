@@ -44,3 +44,15 @@ Una vez dentro de la sesión de Angela, volví al directorio principal con `cd /
 `find`.
 
 - Flags obtenidas: flag [02]
+
+### Misión 0x03: Encontrar la contraseña en la linea 4069
+
+- Pista dada: La password de la usuaria emma esta en la linea 4069 del fichero findme.txt
+
+- Técnica usada: Estando en la sesión de Angela (obtenida en la misión anterior), listé el contenido de su directorio con `ls` y encontré el archivo `findme.txt`. Para extraer la contraseña en la línea indicada por la pista, utilicé el comando `sed -n "4069p" findme.txt`, que imprime únicamente esa línea específica del archivo.Con la contraseña obtenida, accedí como Emma mediante `su emma`.
+
+Una vez dentro de la sesión de Emma, me dirigí a `cd /home/emma`, donde se encontraba la flag correspondiente.
+
+- Por qué funciona: El archivo `findme.txt` se encontraba en el directorio de Angela, a la que accedí en la misión anterior. Que un archivo con la contraseña de Emma residiera en el espacio de otro usuario es un problema de segregación: cada usuario debería tener acceso únicamente a sus propios datos sensibles, no a los de otros. 
+
+- Flags obtenidas: flag [03]
