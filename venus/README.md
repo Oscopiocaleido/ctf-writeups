@@ -32,3 +32,15 @@ a cualquier usuario con acceso al sistema de archivos. La ocultación por conven
 no es una medida de seguridad real.
 
 - Flags obtenidas: flag [01]
+
+### Misión 0x02: Encontrar el fichero whereismypazz.txt
+- Pista dada: La usuaria Angela ha guardado su password en un fichero pero no recuerda donde... solo recuerda que el fichero se llamaba whereismypazz.txt
+
+- Técnica usada: Para encontrar el fichero en todo el sistema utilicé `find`, comenzando desde la ruta `/` (todo el sistema) y con la bandera `-name [nombre]` indicando el nombre del archivo que es "whereismypazz.txt", luego el comando find lo que hace es recorrer todo el sistema buscando el nombre del archivo, ubicando el archivo en la ruta `/usr/share/`. Al final leí el contenido del archivo con `cat` y usé esas credenciales para acceder como Angela mediante `su angela`. 
+
+Una vez dentro de la sesión de Angela, volví al directorio principal con `cd /` luego entré al directorio de Angela con `cd pwned/angela`, donde se encontraba la flag correspondiente.
+
+- Por qué funciona: El archivo estaba ubicado en `/usr/share/`, un directorio del sistema destinado a recursos compartidos entre aplicaciones y, por tanto, legible por cualquier usuario. El problema de seguridad no es un permiso mal configurado, sino la ubicación: guardar credenciales en una ruta pensada para ser pública la expone a cualquier usuario del sistema que sepa (o adivine) el nombre del archivo, incluso usando herramientas como 
+`find`.
+
+- Flags obtenidas: flag [02]
