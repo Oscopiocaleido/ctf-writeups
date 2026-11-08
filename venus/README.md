@@ -60,10 +60,14 @@ Una vez dentro de la sesión de Emma, me dirigí a `cd /home/emma`, donde se enc
 ### Misión 0x04: Encontrar el fichero -
 - Pista dada: La usuaria mia ha dejado su password en el fichero -.
 
-- Técnica usada: Utilicé el comando `ls -a` para listar todos los ficheros del directorio de la usaria Emma, como en dicho directorio estaba un fichero con nombre "-", tenemos el fichero que estabamos buscando, para asegurarme que era el único con dicho nombre usé `find / -name "-"` y arrojaba la ruta del directorio de Emma.
+- Técnica usada: Utilicé el comando `ls -a` para listar todos los ficheros del directorio de la usuaria Emma. Encontré un fichero con nombre `-`, por lo que localicé el archivo que buscaba. Para asegurarme de que era el único con ese nombre en todo el sistema, usé `find / -name "-"`, que confirmó su ubicación en el directorio de Emma.
 
-Accediendo como Mia con `su mia` y utilizando las credenciales obtenidas por el archivo "-", nos movemos a su directorio obteniendo la flag correspondiente a la misión.
+Para leer su contenido, no pude usar `cat -`, ya que el comando interpreta el guion como indicador de lectura desde stdin en vez de leer el archivo. En su lugar, utilicé `cat ./-`, que fuerza a `cat` a tratarlo como una ruta relativa y así pude leer las credenciales correctamente.
 
-- Por qué funciona: Como el caso anterior, que el archivo con la contraseña de Mia residiera en el espacio de otro usuario es un problema de segregación, cada usuario debería tener acceso únicamente a sus datos sensibles, no a los de otros.
+Accedí como Mia con `su mia` y utilizando las credenciales obtenidas por el archivo "-", me moví a su directorio `/pwned/mia` obteniendo la flag correspondiente a la misión.
+
+- Por qué funciona: Como el caso anterior, que el archivo con la contraseña de Mia residiera en el espacio de otro usuario es un problema de segregación, cada usuario debería tener acceso únicamente a sus datos sensibles, no a los de otros. 
+ 
+Adicionalmente, nombrar el archivo con un simple guion (`-`) es una técnica de ofuscación: muchos comandos interpretan un argumento que empieza con `-` como una bandera en vez de un nombre de archivo, lo que puede dificultar su lectura con herramientas automatizadas o scripts que no manejen ese caso.
 
 - Flags obtenidas: flag [04]
