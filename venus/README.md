@@ -71,3 +71,14 @@ Accedí como Mia con `su mia` y utilizando las credenciales obtenidas por el arc
 Adicionalmente, nombrar el archivo con un simple guion (`-`) es una técnica de ofuscación: muchos comandos interpretan un argumento que empieza con `-` como una bandera en vez de un nombre de archivo, lo que puede dificultar su lectura con herramientas automatizadas o scripts que no manejen ese caso.
 
 - Flags obtenidas: flag [04]
+
+### Misión 0x05: Buscar la carpeta llamada hereiam
+- Pista dada: Parece que la usuaria camila ha dejado su password dentro de una carpeta llamada hereiam
+
+- Técnica usada: Utilicé el comando `find / -type d -name "hereiam"` para buscar específicamente directorios, gracias al parámetro `-type d`, ya una vez obtenida la ruta, me moví con el comando `cd`, con el comando `ls -a` listé todos los archivos incluso los ocultos, dando como resultado un archivo con el nombre ".here" y con el comando `cat` leí el contenido de dicho archivo, obteniendo las credenciales de la usuaria Camila.
+
+Accedí como Camila con `su camila` utilizando las credenciales obtenidas anteriormente por el archivo ".here", luego me moví a su directorio `/pwned/camila`, donde se encontraba la flag correspondiente.
+
+- Por qué funciona: Guardar la contraseña dentro de un directorio oculto (con `-type d` localizable igualmente) y en un archivo oculto (`.here`) es, de nuevo, seguridad por oscuridad: ninguno de los dos elementos tenía protección real de permisos, solo dependían de que el atacante no supiera el nombre exacto.
+
+- Flags obtenidas: flag [05]
