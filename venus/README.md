@@ -56,3 +56,14 @@ Una vez dentro de la sesión de Emma, me dirigí a `cd /home/emma`, donde se enc
 - Por qué funciona: El archivo `findme.txt` se encontraba en el directorio de Angela, a la que accedí en la misión anterior. Que un archivo con la contraseña de Emma residiera en el espacio de otro usuario es un problema de segregación: cada usuario debería tener acceso únicamente a sus propios datos sensibles, no a los de otros. 
 
 - Flags obtenidas: flag [03]
+
+### Misión 0x04: Encontrar el fichero -
+- Pista dada: La usuaria mia ha dejado su password en el fichero -.
+
+- Técnica usada: Utilicé el comando `ls -a` para listar todos los ficheros del directorio de la usaria Emma, como en dicho directorio estaba un fichero con nombre "-", tenemos el fichero que estabamos buscando, para asegurarme que era el único con dicho nombre usé `find / -name "-"` y arrojaba la ruta del directorio de Emma.
+
+Accediendo como Mia con `su mia` y utilizando las credenciales obtenidas por el archivo "-", nos movemos a su directorio obteniendo la flag correspondiente a la misión.
+
+- Por qué funciona: Como el caso anterior, que el archivo con la contraseña de Mia residiera en el espacio de otro usuario es un problema de segregación, cada usuario debería tener acceso únicamente a sus datos sensibles, no a los de otros.
+
+- Flags obtenidas: flag [04]
